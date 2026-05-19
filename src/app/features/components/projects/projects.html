@@ -1,0 +1,17 @@
+<div class="projects-container">
+  <h1>Our Projects</h1>
+  <p class="subtitle">Showcasing our latest work and solutions we've delivered</p>
+
+  <div class="projects-grid">
+    <div *ngFor="let project of projects" class="project-card">
+      <div class="project-image">{{ project.image }}</div>
+      <div class="project-content">
+        <h3>{{ project.title }}</h3>
+        <p class="project-description">{{ project.description }}</p>
+        <div class="technologies">
+          <span *ngFor="let tech of project.technologies" class="tech-badge">{{ tech }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

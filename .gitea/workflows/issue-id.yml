@@ -1,0 +1,43 @@
+name: Auto-format Issue ID
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  format-issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate formatted ticket ID
+        env:
+          GITEA_URL: http://192.168.1.1:3000
+          REPO: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          LABELS_JSON: ${{ toJson(github.event.issue.labels) }}
+          TOKEN: ${{ secrets.TICKET_BOT_TOKEN }}
+        run: |
+          DATE_STR=$(date +%y%m%d)
+
+          PREFIX="UN"
+          echo "$LABELS_JSON" | grep -q '"name":"AM"' && PREFIX="AM"
+          echo "$LABELS_JSON" | grep -q '"name":"PM"' && PREFIX="PM"
+
+          SEQ=$(printf "%03d" "$ISSUE_NUMBER")
+          NEW_ID="${PREFIX}${DATE_STR}.${SEQ}"
+
+          case "$ISSUE_TITLE" in
+            ${PREFIX}${DATE_STR}.*)
+              echo "Already formatted, skipping"
+              exit 0
+              ;;
+          esac
+
+          NEW_TITLE="${NEW_ID} - ${ISSUE_TITLE}"
+
+          curl -s -X PATCH \
+            -H "Authorization: token ${TOKEN}" \
+            -H "Content-Type: application/json" \
+            "${GITEA_URL}/api/v1/repos/${REPO}/issues/${ISSUE_NUMBER}" \
+            -d "{\"title\":\"${NEW_TITLE}\"}"

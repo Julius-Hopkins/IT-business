@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <a routerLink="/">
+        <span class="logo">💻</span>
+        <span class="brand-name">Tech Solutions</span>
+      </a>
+    </div>
+
+    <button class="mobile-toggle" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" [class.active]="mobileMenuOpen">
+      <li><a routerLink="/" routerLinkActive="active" (click)="closeMobileMenu()" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+      <li><a routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()">Projects</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">Contact</a></li>
+    </ul>
+  </div>
+</nav>
