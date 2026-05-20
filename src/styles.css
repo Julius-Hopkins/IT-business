@@ -1,3 +1,88 @@
+/* Import Bootstrap CSS */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Custom theme variables and overrides */
+:root {
+  --bs-primary: #667eea;
+  --bs-secondary: #764ba2;
+  --bs-success: #28a745;
+  --bs-danger: #dc3545;
+  --bs-warning: #ffc107;
+  --bs-info: #17a2b8;
+  --bs-light: #f8f9fa;
+  --bs-dark: #1a1a1a;
+
+  /* Brand colors */
+  --primary-color: #667eea;
+  --secondary-color: #764ba2;
+  --accent-color: #ff018d;
+  --dark-color: #1a1a1a;
+  --light-bg: #f9f9f9;
+}
+
+/* Global Styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide scrollbars */
 *::-webkit-scrollbar {
   display: none;
+}
+
+/* Bootstrap overrides for custom brand colors */
+.btn-primary {
+  --bs-btn-bg: #667eea;
+  --bs-btn-border-color: #667eea;
+}
+
+.btn-primary:hover {
+  --bs-btn-bg: #764ba2;
+  --bs-btn-border-color: #764ba2;
+}
+
+.btn-secondary {
+  --bs-btn-bg: #764ba2;
+  --bs-btn-border-color: #764ba2;
+}
+
+.btn-secondary:hover {
+  --bs-btn-bg: #667eea;
+  --bs-btn-border-color: #667eea;
+}
+
+/* Custom gradient classes */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.bg-gradient-purple {
+  background: linear-gradient(135deg, #667eea 10%, #764ba2 100%);
+}
+
+/* Card hover effects */
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-5px);
+}
+
+/* Custom text colors */
+.text-primary-brand {
+  color: #667eea !important;
+}
+
+.text-secondary-brand {
+  color: #764ba2 !important;
+}
+
+/* Badge customizations */
+.badge {
+  font-weight: 500;
 }

@@ -1,15 +1,19 @@
-<div class="projects-container">
-  <h1>Our Projects</h1>
-  <p class="subtitle">Showcasing our latest work and solutions we've delivered</p>
+<div class="container py-5" style="max-width: 1200px;">
+  <h1 class="text-center fs-1 fw-bold mb-2 text-dark">Our Projects</h1>
+  <p class="text-center text-muted mb-5">Showcasing our latest work and solutions we've delivered</p>
 
-  <div class="projects-grid">
-    <div *ngFor="let project of projects" class="project-card">
-      <div class="project-image">{{ project.image }}</div>
-      <div class="project-content">
-        <h3>{{ project.title }}</h3>
-        <p class="project-description">{{ project.description }}</p>
-        <div class="technologies">
-          <span *ngFor="let tech of project.technologies" class="tech-badge">{{ tech }}</span>
+  <div class="row g-4">
+    <div *ngFor="let project of projects" class="col-md-6 col-lg-4">
+      <div class="card h-100 border-0 shadow-sm overflow-hidden">
+        <div class="bg-gradient-primary d-flex align-items-center justify-content-center" style="height: 150px; font-size: 3rem;">
+          {{ project.image }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-dark">{{ project.title }}</h5>
+          <p class="card-text text-muted">{{ project.description }}</p>
+          <div class="d-flex flex-wrap gap-2">
+            <span *ngFor="let tech of project.technologies" class="badge bg-light text-primary-brand">{{ tech }}</span>
+          </div>
         </div>
       </div>
     </div>

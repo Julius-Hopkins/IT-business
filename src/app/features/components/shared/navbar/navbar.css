@@ -1,4 +1,4 @@
-/* Bootstrap-based navbar styling */
+/* Bootstrap-based navbar styling and custom overrides */
 .navbar {
   --bs-navbar-padding-y: 1rem;
 }
@@ -54,4 +54,3 @@
     width: 100%;
   }
 }
-

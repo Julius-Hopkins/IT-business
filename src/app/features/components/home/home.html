@@ -1,77 +1,155 @@
-<div class="home-container">
+<div>
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Tech Solutions</h1>
-      <p>Professional IT Services & Software Development</p>
-      <p class="tagline">Building scalable, secure, and innovative solutions for your business</p>
-      <div class="hero-buttons">
-        <a routerLink="/projects" class="btn btn-primary">View Our Work</a>
-        <a routerLink="/contact" class="btn btn-secondary">Get In Touch</a>
+  <section class="bg-gradient-primary py-5 text-center" style="min-height: 500px; display: flex; align-items: center; justify-content: center;">
+    <div class="container" style="max-width: 800px;">
+      <h1 class="display-3 fw-bold mb-3">Tech Solutions</h1>
+      <p class="fs-5 mb-2 opacity-95">Professional IT Services & Software Development</p>
+      <p class="fs-6 mb-5 opacity-90">Building scalable, secure, and innovative solutions for your business</p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a routerLink="/projects" class="btn btn-light btn-lg fw-bold">View Our Work</a>
+        <a routerLink="/contact" class="btn btn-outline-light btn-lg fw-bold">Get In Touch</a>
       </div>
     </div>
   </section>
 
   <!-- Features Section -->
-  <section class="features">
-    <h2>Why Choose Us</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3>Expertise</h3>
-        <p>15+ years of experience building enterprise solutions across multiple industries and technologies</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3>Performance</h3>
-        <p>Optimized systems that scale with your business, handling millions of transactions daily</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3>Security</h3>
-        <p>Enterprise-grade security practices with compliance to industry standards and regulations</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🤝</div>
-        <h3>Partnership</h3>
-        <p>We work closely with your team to understand and exceed your business objectives</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">💡</div>
-        <h3>Innovation</h3>
-        <p>Stay ahead with cutting-edge technologies and continuous process improvements</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📞</div>
-        <h3>Support</h3>
-        <p>Dedicated support team available 24/7 to ensure your systems run smoothly</p>
+  <section class="py-5">
+    <div class="container" style="max-width: 1200px;">
+      <h2 class="text-center fs-1 fw-bold mb-5 text-dark">Why Choose Us</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body p-4">
+              <div class="fs-1 mb-3">🎯</div>
+              <h5 class="card-title fw-bold text-dark">Expertise</h5>
+              <p class="card-text text-muted">15+ years of experience building enterprise solutions across multiple industries and technologies</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body p-4">
+              <div class="fs-1 mb-3">⚡</div>
+              <h5 class="card-title fw-bold text-dark">Performance</h5>
+              <p class="card-text text-muted">Optimized systems that scale with your business, handling millions of transactions daily</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body p-4">
+              <div class="fs-1 mb-3">🔒</div>
+              <h5 class="card-title fw-bold text-dark">Security</h5>
+              <p class="card-text text-muted">Enterprise-grade security practices with compliance to industry standards and regulations</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body p-4">
+              <div class="fs-1 mb-3">🤝</div>
+              <h5 class="card-title fw-bold text-dark">Partnership</h5>
+              <p class="card-text text-muted">We work closely with your team to understand and exceed your business objectives</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body p-4">
+              <div class="fs-1 mb-3">💡</div>
+              <h5 class="card-title fw-bold text-dark">Innovation</h5>
+              <p class="card-text text-muted">Stay ahead with cutting-edge technologies and continuous process improvements</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body p-4">
+              <div class="fs-1 mb-3">📞</div>
+              <h5 class="card-title fw-bold text-dark">Support</h5>
+              <p class="card-text text-muted">Dedicated support team available 24/7 to ensure your systems run smoothly</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Call to Action -->
-  <section class="cta">
-    <h2>Ready to Transform Your Business?</h2>
-    <p>Let's discuss how we can help you achieve your technology goals</p>
-    <a routerLink="/contact" class="btn btn-large">Schedule a Consultation</a>
+  <section class="bg-gradient-primary py-5 my-5 rounded-3" style="max-width: 800px; margin-left: auto; margin-right: auto;">
+    <div class="text-center px-3">
+      <h2 class="fs-2 fw-bold mb-3">Ready to Transform Your Business?</h2>
+      <p class="fs-5 mb-4 opacity-95">Let's discuss how we can help you achieve your technology goals</p>
+      <a routerLink="/contact" class="btn btn-light btn-lg fw-bold">Schedule a Consultation</a>
+    </div>
   </section>
 
   <!-- Tech Stack -->
-  <section class="tech-stack">
-    <h2>Technologies We Work With</h2>
-    <div class="tech-grid">
-      <div class="tech-item">Angular</div>
-      <div class="tech-item">React</div>
-      <div class="tech-item">Vue.js</div>
-      <div class="tech-item">Node.js</div>
-      <div class="tech-item">Python</div>
-      <div class="tech-item">Java</div>
-      <div class="tech-item">C#/.NET</div>
-      <div class="tech-item">Go</div>
-      <div class="tech-item">AWS</div>
-      <div class="tech-item">Azure</div>
-      <div class="tech-item">Kubernetes</div>
-      <div class="tech-item">Docker</div>
+  <section class="py-5" style="background: #f9f9f9;">
+    <div class="container" style="max-width: 1200px;">
+      <h2 class="text-center fs-1 fw-bold mb-5 text-dark">Technologies We Work With</h2>
+      <div class="row g-3">
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">Angular</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">React</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">Vue.js</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">Node.js</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">Python</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">Java</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">C#/.NET</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">Go</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">AWS</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">Azure</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">Kubernetes</p>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+          <div class="p-4 bg-white text-center rounded card-hover" style="cursor: pointer; transition: all 0.3s ease;">
+            <p class="fw-bold text-primary-brand">Docker</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </div>

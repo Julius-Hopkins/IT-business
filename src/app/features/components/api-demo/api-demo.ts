@@ -199,4 +199,22 @@ export class ApiDemo implements OnInit {
     this.apiResponse = null;
     this.apiError = null;
   }
+
+  getBadgeColor(status: string): string {
+    const colorMap: { [key: string]: string } = {
+      completed: 'success',
+      'in-progress': 'info',
+      upcoming: 'warning',
+    };
+    return colorMap[status] || 'secondary';
+  }
+
+  getPriorityColor(priority: string): string {
+    const colorMap: { [key: string]: string } = {
+      high: 'danger',
+      medium: 'warning',
+      low: 'info',
+    };
+    return colorMap[priority] || 'secondary';
+  }
 }

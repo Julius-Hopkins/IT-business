@@ -1,84 +1,96 @@
-<div class="contact-container">
-  <h1>Get In Touch</h1>
-  <p class="subtitle">Let's discuss your project and how we can help</p>
+<div class="container py-5" style="max-width: 1200px;">
+  <h1 class="text-center fs-1 fw-bold mb-2 text-dark">Get In Touch</h1>
+  <p class="text-center text-muted mb-5">Let's discuss your project and how we can help</p>
 
-  <div class="contact-content">
+  <div class="row g-5 mb-5">
     <!-- Contact Form -->
-    <div class="contact-form-section">
-      <div *ngIf="submitted" class="success-message">
-        <p>✅ Thank you! We'll get back to you soon.</p>
+    <div class="col-lg-6">
+      <div *ngIf="submitted" class="alert alert-success alert-dismissible fade show">
+        <strong>✅ Success!</strong> Thank you! We'll get back to you soon.
       </div>
 
       <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
-        <div class="form-group">
-          <label for="name">Full Name *</label>
-          <input type="text" id="name" [(ngModel)]="formData.name" name="name" required />
+        <div class="mb-3">
+          <label for="name" class="form-label fw-500">Full Name *</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="formData.name" name="name" required />
         </div>
 
-        <div class="form-group">
-          <label for="email">Email Address *</label>
-          <input type="email" id="email" [(ngModel)]="formData.email" name="email" required />
+        <div class="mb-3">
+          <label for="email" class="form-label fw-500">Email Address *</label>
+          <input type="email" class="form-control" id="email" [(ngModel)]="formData.email" name="email" required />
         </div>
 
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" [(ngModel)]="formData.phone" name="phone" />
+        <div class="mb-3">
+          <label for="phone" class="form-label fw-500">Phone Number</label>
+          <input type="tel" class="form-control" id="phone" [(ngModel)]="formData.phone" name="phone" />
         </div>
 
-        <div class="form-group">
-          <label for="subject">Subject *</label>
-          <input type="text" id="subject" [(ngModel)]="formData.subject" name="subject" required />
+        <div class="mb-3">
+          <label for="subject" class="form-label fw-500">Subject *</label>
+          <input type="text" class="form-control" id="subject" [(ngModel)]="formData.subject" name="subject" required />
         </div>
 
-        <div class="form-group">
-          <label for="message">Message *</label>
-          <textarea id="message" [(ngModel)]="formData.message" name="message" rows="5" required></textarea>
+        <div class="mb-3">
+          <label for="message" class="form-label fw-500">Message *</label>
+          <textarea class="form-control" id="message" rows="5" [(ngModel)]="formData.message" name="message" required></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Send Message</button>
+        <button type="submit" class="btn btn-primary w-100 fw-bold">Send Message</button>
       </form>
     </div>
 
     <!-- Contact Info -->
-    <div class="contact-info-section">
-      <div class="info-card">
-        <h3>📍 Location</h3>
-        <p>San Francisco, CA 94105</p>
-        <p class="secondary">We serve clients worldwide</p>
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body border-start border-4 border-primary">
+          <h5 class="card-title fw-bold text-dark">📍 Location</h5>
+          <p class="card-text">San Francisco, CA 94105</p>
+          <p class="small text-muted">We serve clients worldwide</p>
+        </div>
       </div>
 
-      <div class="info-card">
-        <h3>📧 Email</h3>
-        <p><a href="mailto:hello@techsolutions.com">hello@techsolutions.com</a></p>
-        <p class="secondary">Response within 24 hours</p>
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body border-start border-4 border-primary">
+          <h5 class="card-title fw-bold text-dark">📧 Email</h5>
+          <p class="card-text"><a href="mailto:hello@techsolutions.com" class="text-primary-brand text-decoration-none">hello@techsolutions.com</a></p>
+          <p class="small text-muted">Response within 24 hours</p>
+        </div>
       </div>
 
-      <div class="info-card">
-        <h3>📞 Phone</h3>
-        <p><a href="tel:+14155551234">+1 (415) 555-1234</a></p>
-        <p class="secondary">Monday - Friday, 9am - 6pm PST</p>
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body border-start border-4 border-primary">
+          <h5 class="card-title fw-bold text-dark">📞 Phone</h5>
+          <p class="card-text"><a href="tel:+14155551234" class="text-primary-brand text-decoration-none">+1 (415) 555-1234</a></p>
+          <p class="small text-muted">Monday - Friday, 9am - 6pm PST</p>
+        </div>
       </div>
 
-      <div class="info-card">
-        <h3>🔗 Social</h3>
-        <div class="social-links">
-          <a href="#">LinkedIn</a>
-          <a href="#">Twitter</a>
-          <a href="#">GitHub</a>
+      <div class="card border-0 shadow-sm">
+        <div class="card-body border-start border-4 border-primary">
+          <h5 class="card-title fw-bold text-dark">🔗 Social</h5>
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-outline-primary btn-sm">LinkedIn</a>
+            <a href="#" class="btn btn-outline-primary btn-sm">Twitter</a>
+            <a href="#" class="btn btn-outline-primary btn-sm">GitHub</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Services Overview -->
-  <div class="services-section">
-    <h2>Our Services</h2>
-    <div class="services-grid">
-      <div *ngFor="let service of services" class="service-card">
-        <div class="service-icon">{{ service.icon }}</div>
-        <h4>{{ service.name }}</h4>
-        <p>{{ service.description }}</p>
+  <section class="bg-light p-5 rounded-3 mt-5">
+    <h2 class="text-center fs-2 fw-bold mb-5 text-dark">Our Services</h2>
+    <div class="row g-4">
+      <div *ngFor="let service of services" class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm text-center">
+          <div class="card-body">
+            <div class="fs-1 mb-3">{{ service.icon }}</div>
+            <h5 class="card-title fw-bold text-dark">{{ service.name }}</h5>
+            <p class="card-text text-muted">{{ service.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </div>
