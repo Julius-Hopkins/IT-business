@@ -66,7 +66,7 @@ export class ApiService {
     },
   ];
 
-  private contactMessages: ContactMessage[] = [];
+  public contactMessages: ContactMessage[] = [];
   private serviceRequests: ServiceRequest[] = [];
 
   // --- Projects ---

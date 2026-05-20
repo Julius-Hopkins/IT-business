@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../../../services/api/api.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,6 +11,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './contact.css',
 })
 export class Contact {
+constructor(private apiService: ApiService) {}
+
   formData = {
     name: '',
     email: '',
@@ -23,7 +26,11 @@ export class Contact {
   onSubmit() {
     if (this.formData.name && this.formData.email && this.formData.message) {
       this.submitted = true;
-      console.log('Form submitted:', this.formData);
+      this.apiService.submitContactMessage(this.formData).subscribe(response => {
+        console.log('Form submitted:', this.formData);
+        console.log('API Response:', response);
+      });
+      
       setTimeout(() => {
         this.formData = { name: '', email: '', phone: '', subject: '', message: '' };
         this.submitted = false;

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { DeveloperService } from '../../../../services/developer.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -9,8 +11,17 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
-export class Navbar {
+export class Navbar implements OnInit {
   mobileMenuOpen = false;
+  developerModeEnabled = false;
+
+  constructor(private developerService: DeveloperService) {}
+
+  ngOnInit() {
+    this.developerService.developerMode$.subscribe(
+      (mode: boolean) => (this.developerModeEnabled = mode)
+    );
+  }
 
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
@@ -18,5 +29,9 @@ export class Navbar {
 
   closeMobileMenu() {
     this.mobileMenuOpen = false;
+  }
+
+  toggleDeveloperMode() {
+    this.developerService.toggleDeveloperMode();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../services/api/api.service';
@@ -16,20 +16,20 @@ export class ApiDemo implements OnInit {
 
   // Projects
   projects: Project[] = [];
-  projectsLoading = false;
+  projectsLoading = signal(false);
 
   // Blog
   blogPosts: BlogPost[] = [];
-  blogLoading = false;
+  blogLoading = signal(false);
 
   // Contact
   contactMessages: ContactMessage[] = [];
-  contactLoading = false;
+  contactLoading = signal(false);
   contactForm = { name: '', email: '', subject: '', message: '' };
 
   // Service Request
   serviceRequests: ServiceRequest[] = [];
-  serviceLoading = false;
+  serviceLoading = signal(false);
   serviceForm = {
     serviceType: 'development' as 'development' | 'consulting' | 'support' | 'training',
     description: '',
@@ -41,7 +41,7 @@ export class ApiDemo implements OnInit {
 
   // Health
   healthStatus: any = null;
-  healthLoading = false;
+  healthLoading = signal(false);
 
   apiResponse: any = null;
   apiError: any = null;
@@ -54,17 +54,17 @@ export class ApiDemo implements OnInit {
 
   // --- Projects ---
   loadProjects() {
-    this.projectsLoading = true;
+    this.projectsLoading.set(true);
     this.apiError = null;
     this.apiService.getProjects().subscribe({
       next: (response) => {
         this.projects = response.data || [];
         this.apiResponse = response;
-        this.projectsLoading = false;
+        this.projectsLoading.set(false);
       },
       error: (err) => {
         this.apiError = err;
-        this.projectsLoading = false;
+        this.projectsLoading.set(false);
       },
     });
   }
@@ -79,34 +79,34 @@ export class ApiDemo implements OnInit {
 
   // --- Blog ---
   loadBlog() {
-    this.blogLoading = true;
+    this.blogLoading.set(true);
     this.apiError = null;
     this.apiService.getBlogPosts().subscribe({
       next: (response) => {
         this.blogPosts = response.data || [];
         this.apiResponse = response;
-        this.blogLoading = false;
+        this.blogLoading.set(false);
       },
       error: (err) => {
         this.apiError = err;
-        this.blogLoading = false;
+        this.blogLoading.set(false);
       },
     });
   }
 
   // --- Contact ---
   loadContactMessages() {
-    this.contactLoading = true;
+    this.contactLoading.set(true);
     this.apiError = null;
     this.apiService.getContactMessages().subscribe({
       next: (response) => {
         this.contactMessages = response.data || [];
         this.apiResponse = response;
-        this.contactLoading = false;
+        this.contactLoading.set(false);
       },
       error: (err) => {
         this.apiError = err;
-        this.contactLoading = false;
+        this.contactLoading.set(false);
       },
     });
   }
@@ -117,7 +117,7 @@ export class ApiDemo implements OnInit {
       return;
     }
 
-    this.contactLoading = true;
+    this.contactLoading.set(true);
     this.apiError = null;
     this.apiService.submitContactMessage(this.contactForm).subscribe({
       next: (response) => {
@@ -127,24 +127,24 @@ export class ApiDemo implements OnInit {
       },
       error: (err) => {
         this.apiError = err;
-        this.contactLoading = false;
+        this.contactLoading.set(false);
       },
     });
   }
 
   // --- Service Request ---
   loadServiceRequests() {
-    this.serviceLoading = true;
+    this.serviceLoading.set(true);
     this.apiError = null;
     this.apiService.getServiceRequests().subscribe({
       next: (response) => {
         this.serviceRequests = response.data || [];
         this.apiResponse = response;
-        this.serviceLoading = false;
+        this.serviceLoading.set(false);
       },
       error: (err) => {
         this.apiError = err;
-        this.serviceLoading = false;
+        this.serviceLoading.set(false);
       },
     });
   }
@@ -155,7 +155,7 @@ export class ApiDemo implements OnInit {
       return;
     }
 
-    this.serviceLoading = true;
+    this.serviceLoading.set(true);
     this.apiError = null;
     this.apiService.createServiceRequest(this.serviceForm).subscribe({
       next: (response) => {
@@ -172,24 +172,24 @@ export class ApiDemo implements OnInit {
       },
       error: (err) => {
         this.apiError = err;
-        this.serviceLoading = false;
+        this.serviceLoading.set(false);
       },
     });
   }
 
   // --- Health Check ---
   checkHealth() {
-    this.healthLoading = true;
+    this.healthLoading.set(true);
     this.apiError = null;
     this.apiService.healthCheck().subscribe({
       next: (response) => {
         this.healthStatus = response.data;
         this.apiResponse = response;
-        this.healthLoading = false;
+        this.healthLoading.set(false);
       },
       error: (err) => {
         this.apiError = err;
-        this.healthLoading = false;
+        this.healthLoading.set(false);
       },
     });
   }
