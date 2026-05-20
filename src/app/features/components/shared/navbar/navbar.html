@@ -1,23 +1,62 @@
-<nav class="navbar">
-  <div class="navbar-container">
-    <div class="navbar-brand">
-      <a routerLink="/">
-        <span class="logo">💻</span>
-        <span class="brand-name">Tech Solutions</span>
-      </a>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" routerLink="/">
+      <span class="fs-5">💻 Tech Solutions</span>
+    </a>
 
-    <button class="mobile-toggle" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleMobileMenu()"
+      [class.collapsed]="!mobileMenuOpen"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
     </button>
 
-    <ul class="nav-links" [class.active]="mobileMenuOpen">
-      <li><a routerLink="/" routerLinkActive="active" (click)="closeMobileMenu()" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-      <li><a routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()">Projects</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">Contact</a></li>
-      <li><a routerLink="/api-demo" routerLinkActive="active" (click)="closeMobileMenu()">API Demo</a></li>
-    </ul>
+    <div class="collapse navbar-collapse" [class.show]="mobileMenuOpen" id="navbarNav">
+      <ul class="navbar-nav ms-auto gap-2">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="closeMobileMenu()"
+          >
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()">
+            Projects
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">
+            Contact
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="developerModeEnabled">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active" (click)="closeMobileMenu()">
+            Admin
+          </a>
+        </li>
+      </ul>
+
+      <button
+        class="btn ms-3"
+        [class.btn-primary]="!developerModeEnabled"
+        [class.btn-success]="developerModeEnabled"
+        (click)="toggleDeveloperMode()"
+        title="Toggle Developer Mode"
+      >
+        <span *ngIf="!developerModeEnabled">🔒 Dev Mode</span>
+        <span *ngIf="developerModeEnabled">🔓 Dev Mode</span>
+      </button>
+    </div>
   </div>
 </nav>
+

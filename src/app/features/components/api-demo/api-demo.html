@@ -4,156 +4,225 @@
 
   <!-- Tabs -->
   <div class="tabs">
-    <button [class.active]="activeTab === 'projects'" (click)="switchTab('projects')">Projects</button>
+    <button [class.active]="activeTab === 'projects'" (click)="switchTab('projects')">
+      Projects
+    </button>
     <button [class.active]="activeTab === 'blog'" (click)="switchTab('blog')">Blog Posts</button>
     <button [class.active]="activeTab === 'contact'" (click)="switchTab('contact')">Contact</button>
-    <button [class.active]="activeTab === 'service'" (click)="switchTab('service')">Service Request</button>
-    <button [class.active]="activeTab === 'health'" (click)="switchTab('health')">Health Check</button>
+    <button [class.active]="activeTab === 'service'" (click)="switchTab('service')">
+      Service Request
+    </button>
+    <button [class.active]="activeTab === 'health'" (click)="switchTab('health')">
+      Health Check
+    </button>
   </div>
 
   <!-- Error Display -->
-  <div *ngIf="apiError" class="error-message">
-    <strong>❌ Error:</strong> {{ apiError.error || apiError }}
-  </div>
+  @if (apiError) {
+    <div class="error-message"><strong>❌ Error:</strong> {{ apiError.error || apiError }}</div>
+  }
 
   <!-- API Response Display -->
-  <div *ngIf="apiResponse" class="api-response">
-    <details>
-      <summary>📋 API Response</summary>
-      <pre>{{ apiResponse | json }}</pre>
-    </details>
-  </div>
+  @if (apiResponse) {
+    <div class="api-response">
+      <details>
+        <summary>📋 API Response</summary>
+        <pre>{{ apiResponse | json }}</pre>
+      </details>
+    </div>
+  }
 
   <!-- Projects Tab -->
-  <div *ngIf="activeTab === 'projects'" class="tab-content">
-    <button (click)="loadProjects()" class="btn-primary" [disabled]="projectsLoading">
-      {{ projectsLoading ? 'Loading...' : 'Load Projects' }}
-    </button>
+  @if (activeTab === 'projects') {
+    <div class="tab-content" style="background: #f2f2f2">
+      <button (click)="loadProjects()" class="btn-primary" [disabled]="projectsLoading()">
+        {{ projectsLoading() ? 'Loading...' : 'Load Projects' }}
+      </button>
 
-    <div class="projects-list">
-      <div *ngFor="let project of projects" class="project-item">
-        <div class="project-header">
-          <h4>{{ project.title }}</h4>
-          <span class="status-badge" [ngClass]="project.status">{{ project.status }}</span>
-        </div>
-        <p>{{ project.description }}</p>
-        <p class="client"><strong>Client:</strong> {{ project.clientName }}</p>
-        <p class="budget"><strong>Budget:</strong> ${{ project.budget }}</p>
-        <div class="tech-tags">
-          <span *ngFor="let tech of project.technologies" class="tag">{{ tech }}</span>
-        </div>
-        <button (click)="deleteProject(project.id)" class="btn-danger">Delete</button>
+      <div class="projects-list">
+        @for (project of projects; track $index) {
+          <div class="project-item">
+            <div class="project-header">
+              <h4>{{ project.title }}</h4>
+              <span class="status-badge" [ngClass]="project.status">{{ project.status }}</span>
+            </div>
+            <p>{{ project.description }}</p>
+            <p class="client"><strong>Client:</strong> {{ project.clientName }}</p>
+            <p class="budget"><strong>Budget:</strong> ${{ project.budget }}</p>
+            <span class="d-flex justify-content-between align-items-center">
+              <div class="tech-tags">
+                @for (tech of project.technologies; track $index) {
+                  <span class="tag">{{ tech }}</span>
+                }
+              </div>
+              <button (click)="deleteProject(project.id)" class="btn-danger">Delete</button></span
+            >
+          </div>
+        }
       </div>
     </div>
-  </div>
+  }
 
   <!-- Blog Tab -->
-  <div *ngIf="activeTab === 'blog'" class="tab-content">
-    <button (click)="loadBlog()" class="btn-primary" [disabled]="blogLoading">
-      {{ blogLoading ? 'Loading...' : 'Load Blog Posts' }}
-    </button>
+  @if (activeTab === 'blog') {
+    <div class="tab-content">
+      <button (click)="loadBlog()" class="btn-primary" [disabled]="blogLoading()">
+        {{ blogLoading() ? 'Loading...' : 'Load Blog Posts' }}
+      </button>
 
-    <div class="blog-list">
-      <div *ngFor="let post of blogPosts" class="blog-item">
-        <div class="blog-header">
-          <h4>{{ post.title }}</h4>
-          <span *ngIf="post.featured" class="featured-badge">⭐ Featured</span>
-        </div>
-        <p class="blog-meta">By {{ post.author }} on {{ post.createdAt }}</p>
-        <p>{{ post.content }}</p>
-        <div class="blog-tags">
-          <span *ngFor="let tag of post.tags" class="tag">{{ tag }}</span>
-        </div>
+      <div class="blog-list">
+        @for (post of blogPosts; track $index) {
+          <div class="blog-item">
+            <div class="blog-header">
+              <h4>{{ post.title }}</h4>
+              @if (post.featured) {
+                <span class="featured-badge">⭐ Featured</span>
+              }
+            </div>
+            <p class="blog-meta">By {{ post.author }} on {{ post.createdAt }}</p>
+            <p>{{ post.content }}</p>
+            <div class="blog-tags">
+              @for (item of post.tags; track $index) {
+                <span class="tag">{{ item }}</span>
+              }
+            </div>
+          </div>
+        }
       </div>
     </div>
-  </div>
+  }
 
   <!-- Contact Tab -->
-  <div *ngIf="activeTab === 'contact'" class="tab-content">
-    <div class="form-section">
-      <h3>Submit Message</h3>
-      <form (ngSubmit)="submitContactMessage()">
-        <input [(ngModel)]="contactForm.name" name="name" placeholder="Name" required />
-        <input [(ngModel)]="contactForm.email" name="email" placeholder="Email" type="email" required />
-        <input [(ngModel)]="contactForm.subject" name="subject" placeholder="Subject" />
-        <textarea [(ngModel)]="contactForm.message" name="message" placeholder="Message" rows="5" required></textarea>
-        <button type="submit" class="btn-primary" [disabled]="contactLoading">
-          {{ contactLoading ? 'Submitting...' : 'Submit' }}
+  @if (activeTab === 'contact') {
+    <div class="tab-content">
+      <div class="form-section">
+        <h3>Submit Message</h3>
+        <form (ngSubmit)="submitContactMessage()">
+          <input [(ngModel)]="contactForm.name" name="name" placeholder="Name" required />
+          <input
+            [(ngModel)]="contactForm.email"
+            name="email"
+            placeholder="Email"
+            type="email"
+            required
+          />
+          <input [(ngModel)]="contactForm.subject" name="subject" placeholder="Subject" />
+          <textarea
+            [(ngModel)]="contactForm.message"
+            name="message"
+            placeholder="Message"
+            rows="5"
+            required
+          ></textarea>
+          <button type="submit" class="btn-primary" [disabled]="contactLoading()">
+            {{ contactLoading() ? 'Submitting...' : 'Submit' }}
+          </button>
+        </form>
+      </div>
+
+      <div class="form-section">
+        <button (click)="loadContactMessages()" class="btn-primary" [disabled]="contactLoading()">
+          {{ contactLoading() ? 'Loading...' : 'View All Messages' }}
         </button>
-      </form>
-    </div>
 
-    <div class="form-section">
-      <button (click)="loadContactMessages()" class="btn-primary" [disabled]="contactLoading">
-        {{ contactLoading ? 'Loading...' : 'View All Messages' }}
-      </button>
-
-      <div class="messages-list">
-        <div *ngFor="let msg of contactMessages" class="message-item">
-          <h5>{{ msg.name }} - {{ msg.subject }}</h5>
-          <p>{{ msg.email }}</p>
-          <p class="message-content">{{ msg.message }}</p>
-          <small>{{ msg.createdAt }} • Status: {{ msg.status }}</small>
+        <div class="messages-list">
+          @for (msg of contactMessages; track $index) {
+            <div class="message-item">
+              <h5>{{ msg.name }} - {{ msg.subject }}</h5>
+              <p>{{ msg.email }}</p>
+              <p class="message-content">{{ msg.message }}</p>
+              <small>{{ msg.createdAt }} • Status: {{ msg.status }}</small>
+            </div>
+          }
         </div>
       </div>
     </div>
-  </div>
+  }
 
   <!-- Service Request Tab -->
-  <div *ngIf="activeTab === 'service'" class="tab-content">
-    <div class="form-section">
-      <h3>Create Service Request</h3>
-      <form (ngSubmit)="submitServiceRequest()">
-        <select [(ngModel)]="serviceForm.serviceType" name="serviceType" required>
-          <option value="development">Development</option>
-          <option value="consulting">Consulting</option>
-          <option value="support">Support</option>
-          <option value="training">Training</option>
-        </select>
-        <textarea [(ngModel)]="serviceForm.description" name="description" placeholder="Description" rows="5" required></textarea>
-        <select [(ngModel)]="serviceForm.priority" name="priority" required>
-          <option value="low">Low Priority</option>
-          <option value="medium">Medium Priority</option>
-          <option value="high">High Priority</option>
-        </select>
-        <input [(ngModel)]="serviceForm.clientName" name="clientName" placeholder="Client Name" required />
-        <input [(ngModel)]="serviceForm.clientEmail" name="clientEmail" placeholder="Client Email" type="email" required />
-        <input [(ngModel)]="serviceForm.budget" name="budget" placeholder="Budget (optional)" type="number" />
-        <button type="submit" class="btn-primary" [disabled]="serviceLoading">
-          {{ serviceLoading ? 'Submitting...' : 'Submit Request' }}
+  @if (activeTab === 'service') {
+    <div class="tab-content">
+      <div class="form-section">
+        <h3>Create Service Request</h3>
+        <form (ngSubmit)="submitServiceRequest()">
+          <select [(ngModel)]="serviceForm.serviceType" name="serviceType" required>
+            <option value="development">Development</option>
+            <option value="consulting">Consulting</option>
+            <option value="support">Support</option>
+            <option value="training">Training</option>
+          </select>
+          <textarea
+            [(ngModel)]="serviceForm.description"
+            name="description"
+            placeholder="Description"
+            rows="5"
+            required
+          ></textarea>
+          <select [(ngModel)]="serviceForm.priority" name="priority" required>
+            <option value="low">Low Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="high">High Priority</option>
+          </select>
+          <input
+            [(ngModel)]="serviceForm.clientName"
+            name="clientName"
+            placeholder="Client Name"
+            required
+          />
+          <input
+            [(ngModel)]="serviceForm.clientEmail"
+            name="clientEmail"
+            placeholder="Client Email"
+            type="email"
+            required
+          />
+          <input
+            [(ngModel)]="serviceForm.budget"
+            name="budget"
+            placeholder="Budget (optional)"
+            type="number"
+          />
+          <button type="submit" class="btn-primary" [disabled]="serviceLoading()">
+            {{ serviceLoading() ? 'Submitting...' : 'Submit Request' }}
+          </button>
+        </form>
+      </div>
+
+      <div class="form-section">
+        <button (click)="loadServiceRequests()" class="btn-primary" [disabled]="serviceLoading()">
+          {{ serviceLoading() ? 'Loading...' : 'View All Requests' }}
         </button>
-      </form>
-    </div>
 
-    <div class="form-section">
-      <button (click)="loadServiceRequests()" class="btn-primary" [disabled]="serviceLoading">
-        {{ serviceLoading ? 'Loading...' : 'View All Requests' }}
-      </button>
-
-      <div class="requests-list">
-        <div *ngFor="let req of serviceRequests" class="request-item">
-          <div class="request-header">
-            <h5>{{ req.serviceType | uppercase }}</h5>
-            <span class="priority-badge" [ngClass]="req.priority">{{ req.priority }}</span>
-          </div>
-          <p><strong>Client:</strong> {{ req.clientName }}</p>
-          <p><strong>Email:</strong> {{ req.clientEmail }}</p>
-          <p>{{ req.description }}</p>
-          <small *ngIf="req.budget">Budget: ${{ req.budget }}</small>
+        <div class="requests-list">
+          @for (req of serviceRequests; track $index) {
+            <div class="request-item">
+              <div class="request-header">
+                <h5>{{ req.serviceType | uppercase }}</h5>
+                <span class="priority-badge" [ngClass]="req.priority">{{ req.priority }}</span>
+              </div>
+              <p><strong>Client:</strong> {{ req.clientName }}</p>
+              <p><strong>Email:</strong> {{ req.clientEmail }}</p>
+              <p>{{ req.description }}</p>
+              <small *ngIf="req.budget">Budget: ${{ req.budget }}</small>
+            </div>
+          }
         </div>
       </div>
     </div>
-  </div>
+  }
 
   <!-- Health Check Tab -->
-  <div *ngIf="activeTab === 'health'" class="tab-content">
-    <button (click)="checkHealth()" class="btn-primary" [disabled]="healthLoading">
-      {{ healthLoading ? 'Checking...' : 'Check API Health' }}
-    </button>
-
-    <div *ngIf="healthStatus" class="health-info">
-      <p class="status-ok">✅ Status: {{ healthStatus.status }}</p>
-      <p>Uptime: {{ healthStatus.uptime }} seconds</p>
+  @if (activeTab === 'health') {
+    <div class="tab-content">
+      <button (click)="checkHealth()" class="btn-primary" [disabled]="healthLoading()">
+        {{ healthLoading() ? 'Checking...' : 'Check API Health' }}
+      </button>
+      @if (healthStatus) {
+        <div class="health-info">
+          <p class="status-ok">✅ Status: {{ healthStatus.status }}</p>
+          <p>Uptime: {{ healthStatus.uptime }} seconds</p>
+        </div>
+      }
     </div>
-  </div>
+  }
 </div>

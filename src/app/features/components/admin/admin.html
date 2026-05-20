@@ -1,0 +1,66 @@
+<div class="container-lg py-5">
+  <!-- Header -->
+  <div class="bg-gradientt mb-5 p-5 rounded-3">
+    <h1 class="display-4 mb-3">🔧 Admin Panel</h1>
+    <p class="lead mb-0">Developer Mode Enabled</p>
+  </div>
+
+  <!-- Content Grid -->
+  <div class="row g-4">
+    <!-- API Demo Section -->
+    <div class="col-lg-4 col-md-6">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="bi bi-code-square"></i> API Demo
+          </h5>
+          <p class="card-text text-muted">Access all API demo endpoints and testing utilities.</p>
+          <a routerLink="/api-demo" class="btn btn-primary w-100">
+            Go to API Demo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Information Section -->
+    <div class="col-lg-4 col-md-6">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="bi bi-info-circle"></i> System Information
+          </h5>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <strong>Environment:</strong>
+              <span class="badge bg-info">Development</span>
+            </li>
+            <li class="mb-2">
+              <strong>Developer Mode:</strong>
+              <span class="badge bg-success">Enabled</span>
+            </li>
+            <li>
+              <strong>Timestamp:</strong>
+              <small class="d-block text-muted">{{ timestamp }}</small>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Links Section -->
+    <div class="col-lg-4 col-md-6">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="bi bi-lightning"></i> Quick Links
+          </h5>
+          <div class="d-grid gap-2">
+            <a routerLink="/projects" class="btn btn-outline-primary">📁 Projects</a>
+            <a routerLink="/contact" class="btn btn-outline-primary">📧 Contact</a>
+            <a routerLink="/" class="btn btn-outline-primary">🏠 Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
